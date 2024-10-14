@@ -10,7 +10,8 @@ const app = createApp({
 
 /* Startseite */
 app.get("/", async function (req, res) {
-  res.render("start", {});
+  const anmeldung = await app.locals.pool.query("select * from users");
+  res.render("start", { anmeldung: anmeldung.rows });
 });
 
 app.get("/impressum", async function (req, res) {
@@ -18,6 +19,7 @@ app.get("/impressum", async function (req, res) {
 });
 
 app.get("/explorer", async function (req, res) {
+  //const explorerdaten
   res.render("explorer", {});
 });
 
@@ -25,7 +27,9 @@ app.get("/bewertungen", async function (req, res) {
   res.render("bewertungen", {});
 });
 
-
+app.get("/create", async function (req, res) {
+  res.render("createpost", {});
+});
 
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */
 app.listen(3010, () => {
