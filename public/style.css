@@ -15,6 +15,28 @@ footer {
   margin-top: 10vw;
 }
 
-.button{
-  margin: 20px;
+.buttonfinal {
+  padding: 7px;
+  width: 100%;
+  background-color: black;
+  border-style: none;
+  color: white;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+h1 {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+input {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 100%;
 }

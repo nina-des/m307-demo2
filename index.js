@@ -18,9 +18,9 @@ app.get("/impressum", async function (req, res) {
   res.render("impressum", {});
 });
 
-app.get("/explorer", async function (req, res) {
-  //const explorerdaten
-  res.render("explorer", {});
+app.get("/", async function (req, res) {
+  const inhaltepost = await app.locals.pool.query("select * from recepies");
+  res.render("explorer: recepies.rows", {});
 });
 
 app.get("/bewertungen", async function (req, res) {
