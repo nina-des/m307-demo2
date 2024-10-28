@@ -18,17 +18,25 @@ app.get("/impressum", async function (req, res) {
   res.render("impressum", {});
 });
 
-app.get("/", async function (req, res) {
-  const inhaltepost = await app.locals.pool.query("select * from recepies");
-  res.render("explorer: recepies.rows", {});
+app.get("/explorer", async function (req, res) {
+  const recepies = await app.locals.pool.query("select FROM * recepies");
+  res.render("explorer", { recepies: recepies.rows });
 });
 
 app.get("/bewertungen", async function (req, res) {
   res.render("bewertungen", {});
 });
 
-app.get("/create", async function (req, res) {
+app.get("/createpost", async function (req, res) {
   res.render("createpost", {});
+});
+
+app.post("/createpost", async function (req, res) {
+  await app.locals.pool.query(
+    "INSERT INTO recepies (titel, titelbild, beschreibung) VALUES ($1, $2, $3)",
+    [req.body.titel, req.body.content]
+  );
+  res.redirect("/explorer");
 });
 
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */

@@ -1,9 +1,34 @@
-<h1>luisamueller</h1>
-<input class="button" type="submit" value="Bild hochladen" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+  rel="stylesheet"
+  
+  <h1>luisamueller</h1>
+<!--<input class="button" type="submit" value="Bild hochladen" /> --> 
 </form>
 <div>
+  <form action="/createpost" method="post">
+    <span class="inputtitel">
+      Titel
+    </span>
+    <input type="text" name="titel"/> <br/>
+    <span class="inputtitel">
+      Titelbild
+    </span>
+    <input type="text" name="titelbild"/> <br/>
+    <span class="inputtitel">
+      Beschreibung
+    </span><br/>
+    <textarea placeholder='Enter comment...' maxlength='100' minlength='100'>
+    </textarea>
+    <input class="buttonfinal" type="submit" value="Veröffentlichen"/>
+  </form>
+
+<!--
     <input placeholder="Titel..." type="titel" /><br />
     <input placeholder="Beschreibe dein Rezept..." type="beschreibung" /><br />
   </div>
 
   <input class="button final" type="submit" value="Hochladen" />
+-->

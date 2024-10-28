@@ -39,4 +39,20 @@ input {
   margin-top: 8px;
   margin-bottom: 8px;
   width: 100%;
+  border-radius: 6px;
+  border: 1px solid grey;
+}
+
+.inputtitel {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 200;
+  font-style: normal;
+}
+
+textarea {
+  margin-top: 8px;
+  margin-bottom: 8px;
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid grey;
 }
