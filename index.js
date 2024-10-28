@@ -19,7 +19,9 @@ app.get("/impressum", async function (req, res) {
 });
 
 app.get("/explorer", async function (req, res) {
-  const recepies = await app.locals.pool.query("select FROM * recepies");
+  const recepies = await app.locals.pool.query(
+    "SELECT recepies.*, users.nutzername AS name FROM recepies INNER JOIN users ON recepies.user_id = users.id;"
+  );
   res.render("explorer", { recepies: recepies.rows });
 });
 
@@ -33,8 +35,8 @@ app.get("/createpost", async function (req, res) {
 
 app.post("/createpost", async function (req, res) {
   await app.locals.pool.query(
-    "INSERT INTO recepies (titel, titelbild, beschreibung) VALUES ($1, $2, $3)",
-    [req.body.titel, req.body.content]
+    "INSERT INTO recepies (titel, bild, text, datum) VALUES ($1, $2, $3, current_timestamp)",
+    [req.body.titel, req.body.bild, req.body.text]
   );
   res.redirect("/explorer");
 });
