@@ -41,6 +41,29 @@ app.post("/createpost", async function (req, res) {
   res.redirect("/explorer");
 });
 
+if (!req.session.userid) {
+  res.redirect("/start");
+  return;
+}
+
+app.get("/", async function (req, res) {
+  +  if (!req.session.userid) {
+  +    res.redirect("/start");
+  +    return;
+  +  }
+    const posts = await app.locals.pool.query("SELECT * FROM recepies");
+    res.render("start", { posts: posts.rows });
+  });
+
+  const posts = await app.locals.pool.query(
+    "SELECT * FROM recepies WHERE user_id = $1", [req.session.userid]
+  );
+
+  await app.locals.pool.query(
+    "INSERT INTO recepies (user_id, titel, text) VALUES ($1, $2, $3)",
+    [req.sesssion.userid, req.body.titel, req.body.text]
+  );
+
 /* Wichtig! Diese Zeilen müssen immer am Schluss der Website stehen! */
 app.listen(3010, () => {
   console.log(`Example app listening at http://localhost:3010`);

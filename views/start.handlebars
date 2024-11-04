@@ -7,16 +7,16 @@
 <div class="Login">
   <div class="anmelden">
     <h1>Anmelden</h1>
-    <form>
-      <div>
+    <div>
+    <form action="/login" method="POST">
         <span class="inputtitel">
           Benutzername:
         </span>
-        <input type="text" /><br />
+        <input name="nutzername" type="text" /><br />
         <span class="inputtitel">
           Passwort:
         </span>
-        <input type="text" /><br />
+        <input name="passwort" type="text" /><br />
       </div>
       <input class="buttonfinal" type="submit" value="Anmelden" />
     </form>
@@ -25,18 +25,20 @@
   <div class="registrieren">
     <h1>Registrieren</h1>
     <div>
+      <form action="/register" method="POST">
       <span class="inputtitel">
         Benutzername:
       </span>
-      <input type="text" /><br />
+      <input name="nutzername" type="text" /><br />
       <span class="inputtitel">
         E-Mail:
       </span>
-      <input type="text" /><br />
+      <input name="email" type="text" /><br />
       <span class="inputtitel">
         Passwort:
       </span>
-      <input type="text" /><br />
+      <input name="passwort" type="text" /><br />
+    </form>
     </div>
     <input class="buttonfinal" type="submit" value="registrieren" />
   </div>
