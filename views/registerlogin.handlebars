@@ -1,0 +1,46 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+  rel="stylesheet"
+/>
+<div class="Login">
+  <div class="anmelden">
+    <h1>Anmelden</h1>
+    <div>
+    <form action="/login" method="POST">
+        <span class="inputtitel">
+          Benutzername:
+        </span>
+        <input name="nutzername" type="text" /><br />
+        <span class="inputtitel">
+          Passwort:
+        </span>
+        <input name="passwort" type="text" /><br />
+      </div>
+      <input class="buttonfinal" type="submit" value="Anmelden" />
+    </form>
+  </div>
+
+  <div class="registrieren">
+    <h1>Registrieren</h1>
+    <div>
+      <form action="/register" method="POST">
+      <span class="inputtitel">
+        Benutzername:
+      </span>
+      <input name="nutzername" type="text" /><br />
+      <span class="inputtitel">
+        E-Mail:
+      </span>
+      <input name="email" type="text" /><br />
+      <span class="inputtitel">
+        Passwort:
+      </span>
+      <input name="passwort" type="text" /><br />
+      <input class="buttonfinal" type="submit" value="registrieren" />
+    </form>
+    </div>
+  </div>
+
+</div>

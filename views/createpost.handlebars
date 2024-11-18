@@ -8,7 +8,7 @@
 <!--<input class="button" type="submit" value="Bild hochladen" /> --> 
 </form>
 <div>
-  <form action="/createpost" method="post">
+  <form action="/createpost" enctype="multipart/form-data" method="post">
     <span class="inputtitel">
       Titel
     </span>
@@ -16,7 +16,7 @@
     <span class="inputtitel">
       Titelbild
     </span>
-    <input type="text" name="bild"/> <br/>
+    <input type="file" name="bild"/> <br/>
     <span class="inputtitel">
       Beschreibung
     </span><br/>

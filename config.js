@@ -32,26 +32,23 @@ export function createApp(dbconfig) {
 
   app.locals.pool = pool;
 
-  app.get("/register", function (req, res) {
-    res.render("register");
+  app.get("/registerlogin", function (req, res) {
+    res.render("registerlogin");
   });
 
   app.post("/register", function (req, res) {
     var passwort = bcrypt.hashSync(req.body.passwort, 10);
-    pool.query(
+    const result = pool.query(
       "INSERT INTO users (nutzername, email, passwort) VALUES ($1, $2, $3)",
       [req.body.nutzername, req.body.email, passwort],
       (error, result) => {
         if (error) {
           console.log(error);
         }
-        res.redirect("/start");
+        req.session.userid = result.rows[0].id;
+        res.redirect("/");
       }
     );
-  });
-
-  app.get("/login", function (req, res) {
-    res.render("login");
   });
 
   app.post("/login", function (req, res) {
@@ -66,7 +63,7 @@ export function createApp(dbconfig) {
           req.session.userid = result.rows[0].id;
           res.redirect("/");
         } else {
-          res.redirect("/start");
+          res.redirect("/registerlogin");
         }
       }
     );

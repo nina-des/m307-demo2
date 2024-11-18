@@ -56,3 +56,8 @@ textarea {
   border-radius: 6px;
   border: 1px solid grey;
 }
+
+.post {
+  width: 50%;
+  margin: 0 auto;
+}
