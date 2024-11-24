@@ -51,6 +51,16 @@ export function createApp(dbconfig) {
     );
   });
 
+  app.get("/start", function (req, res) {
+    pool.query("SELECT * FROM recipes", (error, result) => {
+      if (error) {
+        console.log(error);
+      }
+      const recipes = result;
+      res.render("start", { recipes });
+    });
+  });
+
   app.post("/login", function (req, res) {
     pool.query(
       "SELECT * FROM users WHERE nutzername = $1",

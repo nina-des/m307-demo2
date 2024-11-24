@@ -10,10 +10,11 @@ const app = createApp({
 
 /* Startseite */
 app.get("/", async function (req, res) {
-  if (!req.session.userid) {
+  console.log("userid: ", req.session.userid);
+  /*if (!req.session.userid) {
     res.redirect("/registerlogin");
     return;
-  }
+  }*/
   const recipes = await app.locals.pool.query(
     "SELECT recipes.*, users.nutzername AS name FROM recipes INNER JOIN users ON recipes.user_id = users.id;"
   );
@@ -32,7 +33,7 @@ app.get("/createpost", async function (req, res) {
   res.render("createpost", {});
 });
 
-app.post("/createpost", upload.single('bild') async function (req, res) {
+app.post("/createpost", upload.single("bild"), async function (req, res) {
   await app.locals.pool.query(
     "INSERT INTO recipes (titel, bild, text, datum) VALUES ($1, $2, $3, current_timestamp)",
     [req.body.titel, req.body.bild, req.body.text]
