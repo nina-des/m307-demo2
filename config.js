@@ -34,6 +34,10 @@ export function createApp(dbconfig) {
 
   app.locals.pool = pool;
 
+  app.get("/start", function (res, req) {
+    res.render("start");
+  });
+
   app.get("/registerlogin", function (req, res) {
     res.render("registerlogin");
   });
@@ -53,8 +57,6 @@ export function createApp(dbconfig) {
     );
   });
 
-  
-
   app.post("/login", function (req, res) {
     pool.query(
       "SELECT * FROM users WHERE nutzername = $1",
@@ -73,19 +75,22 @@ export function createApp(dbconfig) {
     );
   });
 
+  // Erweiterung der Handlebars-Engine mit benutzerdefinierten Helper-Funktionen -> Für Sternebewertung
   app.engine(
     "handlebars",
     engine({
       helpers: {
+        // Helper: Erstellt eine Schleife von 0 bis n
         range: function (n, block) {
-          let accum = "";
+          let accum = ""; // Ergebnis-String
           for (let i = 0; i < n; ++i) {
-            accum += block.fn(i);
+            accum += block.fn(i); // Fügt für jeden Iterationswert den HTML-Block hinzu
           }
-          return accum;
+          return accum; // Gibt den gesamten HTML-Block zurück
         },
+        // Helper: Berechnet die Differenz zu 5
         diff: function (n, block) {
-          return 5 - n;
+          return 5 - n; // Gibt den Unterschied zwischen 5 und n zurück
         },
       },
     })

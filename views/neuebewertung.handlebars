@@ -1,0 +1,30 @@
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+  rel="stylesheet"
+/>
+
+<a href="/">back</a>
+<div class="inhalt">
+  <h1>Neue Bewertung</h1>
+  <form
+    action="/neuebewertung/{{id}}"
+    enctype="multipart/form-data"
+    method="post"
+  >
+
+    <span class="inputtitel">
+      Kommentar
+    </span><br />
+    <textarea name="kommentar" placeholder="Enter comment..."></textarea>
+    <br />
+    <span class="inputtitel">
+      Sterne
+    </span>
+    <input type="number" name="stars" min="1" max="5" />
+    <br />
+    <input class="buttonfinal" type="submit" value="Veröffentlichen" />
+  </form>
+
+</div>

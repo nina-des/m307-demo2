@@ -15,6 +15,8 @@ app.get("/", async function (req, res) {
     res.redirect("/registerlogin");
     return;
   }
+
+  // Abrufen aller Rezepte aus der Datenbank mit den zugehörigen Nutzernamen
   const recipes = await app.locals.pool.query(
     "SELECT recipes.*, users.nutzername AS name FROM recipes INNER JOIN users ON recipes.user_id = users.id;"
   );
@@ -25,6 +27,7 @@ app.get("/impressum", async function (req, res) {
   res.render("impressum", {});
 });
 
+// Route für die Bewertungsseite
 app.get("/bewertungen", async function (req, res) {
   res.render("bewertungen", {});
 });
@@ -38,7 +41,22 @@ app.post("/createpost", upload.single("bild"), async function (req, res) {
     "INSERT INTO recipes (titel, bild, text, datum) VALUES ($1, $2, $3, current_timestamp)",
     [req.body.titel, req.body.bild, req.body.text]
   );
-  res.redirect("/explorer");
+  res.redirect("/");
+});
+
+// POST-Route zum Verarbeiten einer neuen Bewertung für ein Rezept
+app.post("/neuebewertung/:id", async function (req, res) {
+  //await app.locals.pool.query(
+  //  "INSERT INTO reviews (text, sterne, user_id, datum, recipe_id) VALUES ($1, $2, $3, current_timestamp, $4)",
+  //  [req.body.kommentar, req.body.stars, req.session.userid, req.params.id]
+  //);
+  console.log("TEST");
+  res.redirect("/" + req.params.id + "/bewertungen");
+});
+
+app.get("/neuebewertung/:id", function (req, res) {
+  const id = req.params.id;
+  res.render("neuebewertung", { id });
 });
 
 app.get("/:id/bewertungen", function (req, res) {
@@ -82,16 +100,6 @@ app.get("/:id/bewertungen", function (req, res) {
       );
     }
   );
-});
-
-app.get("/start", function (req, res) {
-  pool.query("SELECT * FROM recipes", (error, result) => {
-    if (error) {
-      console.log(error);
-    }
-    const recipes = result;
-    res.render("start", { recipes });
-  });
 });
 
 app.get("/start", function (req, res) {

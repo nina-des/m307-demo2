@@ -5,23 +5,25 @@
   rel="stylesheet"
 />
 
-<h1>{{recipe.titel}}</h1>
+<a href="/">back</a>
+<div class="inhalt">
+<h1>Bewertungen: {{recipe.titel}}</h1>
+<a href="/neuebewertung/{{recipe.id}}"><button></button>Create Review</button></a>
 <div>
-  <a href="/explorer">back</a>
   {{#each reviews}}
     <div>
       <h1>{{nutzername}}</h1>
       <p>{{text}}</p>
       <img />
       {{#range sterne}}
-        <img src="/sternentaste-bewerten.png" alt="Star" />
+        <img src="/sternentaste-bewerten.png" alt="Star" class="star" />
       {{/range}}
       {{#range (diff sterne)}}
-        <img src="/construction.gif" alt="Star" />
+        <img src="/empty_star.png" alt="Star" class="star" />
       {{/range}}
     </div>
   {{/each}}
-
+</div>
 </div>
 
 <script>

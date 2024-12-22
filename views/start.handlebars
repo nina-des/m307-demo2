@@ -5,7 +5,7 @@
   rel="stylesheet"
 />
 
-<div class="post">
+<div class="inhalt">
   {{#recipes}}
     <h2 class="acount">{{name}}</h2>
     <img src="/uploads/{{bild}}" alt="picture" />
@@ -13,17 +13,21 @@
       <h1 class="titelrezepte">{{titel}}</h1>
       <p class="datum">{{datum}}</p>
     </div>
-      <img src="/sternentaste-bewerten.png"/>
+    <div class="row">
+      <a href="/{{id}}/bewertungen""><img src="/sternentaste-bewerten.png" class="star"/></a>
+      <a href="/{{id}}/bewertungen" class="bewertungslink">Bewertungen</a>
+    </div>
       <p class="sterne">{{sterne}}</p>
     <p class="rezeptbeschreibung">{{text}}</p>
-    <a href="/{{id}}/bewertungen">Bewertungen</a>
+    
+    <hr>
   {{/recipes}}
 </div>
 
-  <a href="/bewertung">
+  <!-- <a href="/bewertung">
     <img src="/sternentaste-bewerten.png" />
   </a>
   <a href="/bewertungen">
     <img src="Kommentar.svg" />
-  </a>
+  </a> -->
 </div>
