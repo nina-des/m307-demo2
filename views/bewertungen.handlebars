@@ -3,14 +3,28 @@
 <link
   href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
   rel="stylesheet"
-  
-  <div>
+/>
+
+<h1>{{recipe.titel}}</h1>
+<div>
   <a href="/explorer">back</a>
-  <h1>Pomodoro Spagetthi</h1>
-
-  <div>
-    <img />
-
-  </div>
+  {{#each reviews}}
+    <div>
+      <h1>{{nutzername}}</h1>
+      <p>{{text}}</p>
+      <img />
+      {{#range sterne}}
+        <img src="/sternentaste-bewerten.png" alt="Star" />
+      {{/range}}
+      {{#range (diff sterne)}}
+        <img src="/construction.gif" alt="Star" />
+      {{/range}}
+    </div>
+  {{/each}}
 
 </div>
+
+<script>
+  Handlebars.registerHelper('range', function(n, block) { var accum = '';
+  for(var i = 0; i < n; ++i) accum += block.fn(i); return accum; });
+</script>

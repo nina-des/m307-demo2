@@ -1,12 +1,14 @@
 import express from "express";
 import { engine } from "express-handlebars";
 import pg from "pg";
-const { Pool } = pg;
 import cookieParser from "cookie-parser";
 import multer from "multer";
-const upload = multer({ dest: "public/uploads/" });
 import sessions from "express-session";
 import bcrypt from "bcrypt";
+
+const { Pool } = pg;
+
+const upload = multer({ dest: "public/uploads/" });
 
 export function createApp(dbconfig) {
   const app = express();
@@ -51,15 +53,7 @@ export function createApp(dbconfig) {
     );
   });
 
-  app.get("/start", function (req, res) {
-    pool.query("SELECT * FROM recipes", (error, result) => {
-      if (error) {
-        console.log(error);
-      }
-      const recipes = result;
-      res.render("start", { recipes });
-    });
-  });
+  
 
   app.post("/login", function (req, res) {
     pool.query(
@@ -78,6 +72,24 @@ export function createApp(dbconfig) {
       }
     );
   });
+
+  app.engine(
+    "handlebars",
+    engine({
+      helpers: {
+        range: function (n, block) {
+          let accum = "";
+          for (let i = 0; i < n; ++i) {
+            accum += block.fn(i);
+          }
+          return accum;
+        },
+        diff: function (n, block) {
+          return 5 - n;
+        },
+      },
+    })
+  );
 
   return app;
 }
