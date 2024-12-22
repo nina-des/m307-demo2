@@ -38,8 +38,8 @@ app.get("/createpost", async function (req, res) {
 
 app.post("/createpost", upload.single("bild"), async function (req, res) {
   await app.locals.pool.query(
-    "INSERT INTO recipes (titel, bild, text, datum) VALUES ($1, $2, $3, current_timestamp)",
-    [req.body.titel, req.body.bild, req.body.text]
+    "INSERT INTO recipes (titel, bild, text, datum, user_id) VALUES ($1, $2, $3, current_timestamp, $4)",
+    [req.body.titel, req.file.filename, req.body.text, req.session.userid]
   );
   res.redirect("/");
 });
